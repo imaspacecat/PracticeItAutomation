@@ -23,14 +23,19 @@ public class Submit {
 
         Queue<String[]> problemInfo = submit.readProblemInfo(url);
 
-
-
-        //testing with multipleselect on 2.1 self-check
-        String[] test = {"2585","sc","multipleSelect","8"};
-
         try(WebClient webClient = submit.login()){
-            submit.multipleSelectBruteForce(test, webClient);
+            for(String[] problem : problemInfo){
+                if(problem[2].equals("multipleSelect")){
+                    submit.multipleSelectBruteForce(problem, webClient);
+                }else if(problem[2].equals("multipleChoice")){
+                    submit.multipleChoiceBruteForce(problem, webClient);
+                }else{
+                    continue;
+                }
+            }
         }
+
+
         /*
         String q = "random word £500 bank $";
         String url = "https://example.com?q=" + URLEncoder.encode(q, StandardCharsets.UTF_8);
