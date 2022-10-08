@@ -120,9 +120,17 @@ public class Submit {
             multipleSelectRecursive(webClient, min, max, newURL);
         }
     }
+    private void codeSubmit(WebClient webClient, int problemID, String answer) throws IOException {
+        String url = "https://practiceit.cs.washington.edu/test/enqueue-job?problemid="+problemID+"&cheated=0&solution=";
+        url += URLEncoder.encode(answer, StandardCharsets.UTF_8);
+        webClient.getPage(url);
+    }
 
-
-
+    private void freeResponse(WebClient webClient, int problemID, String answer) throws IOException {
+        String url = "https://practiceit.cs.washington.edu/test/enqueue-job?problemid="+problemID+"&cheated=0&mechanical1=";
+        url += URLEncoder.encode(answer, StandardCharsets.UTF_8);
+        webClient.getPage(url);
+    }
 }
 
 

@@ -78,7 +78,7 @@ public class GetProblemInfo {
             return "multipleChoice";
         } else if (doc.select("input.expressionanswer[name=mechanical2]").size() != 0) {
             return "multipleResponse";
-        }else if (doc.select("input.expressionanswer[name=mechanical1]").size() != 0){
+        } else if (doc.select("input.expressionanswer[name=mechanical1]").size() != 0){
             return "freeResponse";
         }else{
             return "codeSubmit";
