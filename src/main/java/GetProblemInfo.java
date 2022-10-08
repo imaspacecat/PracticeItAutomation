@@ -21,7 +21,10 @@ public class GetProblemInfo {
         BufferedWriter out = new BufferedWriter(file);
 
         for(String[] problem : problemInfo){
-            out.write(problem[1] + "," + problem[2] + "," + problem[3] + "," + problem[4] + "\n");
+            switch(problem[1]){
+                default:
+                    out.write(problem[1]+","+problem[2]+","+problem[3]+","+problem[4]+","+problem[5]+","+problem[6]+"\n");
+            }
         }
         out.close();
     }
@@ -30,6 +33,7 @@ public class GetProblemInfo {
         getLinks(problems);
         getAnswerTypes(problems);
         getAnswerCount(problems);
+        getProblemNumber(problems);
         return problems;
     }
     private void getLinks(List<String[]> problems) throws IOException{
@@ -41,7 +45,7 @@ public class GetProblemInfo {
         int IDCounter = 2537;
 
         for (Element problemInfo : data){
-            String[] linkInfo = new String[5];
+            String[] linkInfo = new String[7];
             String problemLink = problemInfo.attr("abs:href");
             if(problemLink.contains("bjp4")){
 
@@ -114,5 +118,17 @@ public class GetProblemInfo {
             }else break;
         }
         return Integer.toString(checkCounter);
+    }
+    private void getProblemNumber(List<String[]> problems){
+        String[] splitted;
+        for(String[] problem : problems){
+            String reduced = problem[0].substring(62,68);
+            if(problem[2].equals("sc"))
+                splitted = reduced.split("/s");
+            else
+                splitted = reduced.split("/e");
+            problem[5] = splitted[0];
+            problem[6] = splitted[1].split("%")[0];
+        }
     }
 }
