@@ -24,13 +24,18 @@ public class Submit {
         Queue<String[]> problemInfo = submit.readProblemInfo(url);
 
         try(WebClient webClient = submit.login()){
+            //exercise exception
+            submit.exceptions(webClient);
+
             for(String[] problem : problemInfo){
+                if(Integer.parseInt(problem[0]) <= 2639) continue;
+                System.out.println(problem[4] + "." + problem[5]);
                 if(problem[2].equals("multipleSelect")){
                     submit.multipleSelectBruteForce(problem, webClient);
                 }else if(problem[2].equals("multipleChoice")){
                     submit.multipleChoiceBruteForce(problem, webClient);
-                }else{
-                    continue;
+                }else if(problem[1].equals("ex")){
+                    submit.exerciseSubmit(webClient, problem);
                 }
             }
         }
@@ -67,7 +72,6 @@ public class Submit {
             return webClient;
         }
     }
-    //problemInfo is problemId, sc/ex, problem type, number of answers
     public Queue<String[]> readProblemInfo(String fileName) throws IOException {
         FileReader file = new FileReader(fileName);
         BufferedReader out = new BufferedReader(file);
@@ -120,9 +124,16 @@ public class Submit {
             multipleSelectRecursive(webClient, min, max, newURL);
         }
     }
-    private void codeSubmit(WebClient webClient, int problemID, String answer) throws IOException {
-        String url = "https://practiceit.cs.washington.edu/test/enqueue-job?problemid="+problemID+"&cheated=0&solution=";
-        url += URLEncoder.encode(answer, StandardCharsets.UTF_8);
+    private void exerciseSubmit(WebClient webClient, String[] problem) throws IOException {
+        String answerLocation = "src/main/java/exercises/chapter"+problem[4]+"/"+problem[6]+".txt";
+        StringBuilder answer = new StringBuilder();
+        BufferedReader out = new BufferedReader(new FileReader(answerLocation));
+        String inputLine;
+        while((inputLine = out.readLine()) != null){
+            answer.append(inputLine).append("\n");
+        }
+        String url = "https://practiceit.cs.washington.edu/test/enqueue-job?problemid="+problem[0]+"&cheated=0&solution=";
+        url += URLEncoder.encode(answer.toString(), StandardCharsets.UTF_8);
         webClient.getPage(url);
     }
 
@@ -130,6 +141,9 @@ public class Submit {
         String url = "https://practiceit.cs.washington.edu/test/enqueue-job?problemid="+problemID+"&cheated=0&mechanical1=";
         url += URLEncoder.encode(answer, StandardCharsets.UTF_8);
         webClient.getPage(url);
+    }
+    private void exceptions(WebClient webClient) throws IOException {
+        webClient.getPage("https://practiceit.cs.washington.edu/test/enqueue-job?problemid=2640&cheated=0&mechanical1=makeAWindow");
     }
 }
 

@@ -15,6 +15,7 @@ import java.util.regex.Pattern;
 public class Main {
     // self check - https://www.buildingjavaprograms.com/self-check-solutions-4ed.html
     // exercies - https://github.com/ramakastriot/practiceit/tree/master/chapter2
+    // alternate self check - http://what-when-how.com/Tutorial/topic-995khifo/Building-Java-Programs-A-Back-to-Basics-Approach-1066.html
 
     public static void main(String[] args) throws IOException {
 //        try (final WebClient webClient = new WebClient()) {

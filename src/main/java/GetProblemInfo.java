@@ -22,8 +22,15 @@ public class GetProblemInfo {
 
         for(String[] problem : problemInfo){
             switch(problem[1]){
+                case "2835":
+                    break;
+                case "2633":
+                    problem[7] = "NumbersOutput";
+                case "2640":
+                    Jsoup.connect("https://practiceit.cs.washington.edu/test/enqueue-job?problemid=2640&cheated=0&mechanical1=makeAWindow");
+                    break;
                 default:
-                    out.write(problem[1]+","+problem[2]+","+problem[3]+","+problem[4]+","+problem[5]+","+problem[6]+"\n");
+                    out.write(problem[1]+","+problem[2]+","+problem[3]+","+problem[4]+","+problem[5]+","+problem[6]+","+problem[7]+"\n");
             }
         }
         out.close();
@@ -34,6 +41,7 @@ public class GetProblemInfo {
         getAnswerTypes(problems);
         getAnswerCount(problems);
         getProblemNumber(problems);
+        getProblemNames(problems);
         return problems;
     }
     private void getLinks(List<String[]> problems) throws IOException{
@@ -45,7 +53,7 @@ public class GetProblemInfo {
         int IDCounter = 2537;
 
         for (Element problemInfo : data){
-            String[] linkInfo = new String[7];
+            String[] linkInfo = new String[8];
             String problemLink = problemInfo.attr("abs:href");
             if(problemLink.contains("bjp4")){
 
@@ -67,8 +75,7 @@ public class GetProblemInfo {
                 continue;
             }
             Document doc = Jsoup.connect(problem[0]).get();
-            String problemType = answerType(doc);
-            problem[3] = problemType;
+            problem[3] = answerType(doc);
         }
     }
     private String answerType(Document doc) {
@@ -78,7 +85,8 @@ public class GetProblemInfo {
             return "multipleChoice";
         } else if (doc.select("input.expressionanswer[name=mechanical2]").size() != 0) {
             return "multipleResponse";
-        } else if (doc.select("input.expressionanswer[name=mechanical1]").size() != 0){
+        } else if (doc.select("input.expressionanswer[name=mechanical1]").size() != 0 ||
+                doc.select("textarea.expressionanswer[name=mechanical1]").size() != 0){
             return "freeResponse";
         }else{
             return "codeSubmit";
@@ -129,6 +137,13 @@ public class GetProblemInfo {
                 splitted = reduced.split("/e");
             problem[5] = splitted[0];
             problem[6] = splitted[1].split("%")[0];
+        }
+    }
+    private void getProblemNames(List<String[]> problems) throws IOException {
+        for(String[] problem : problems){
+            Document doc = Jsoup.connect(problem[0]).get();
+            Element element = doc.select("input[name=problemname]").first();
+            problem[7] = element.attr("value");
         }
     }
 }
