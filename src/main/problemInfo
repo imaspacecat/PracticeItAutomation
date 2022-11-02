@@ -94,12 +94,14 @@
 2630,ex,codeSubmit,1,2,8,spacesAndNumbers
 2631,ex,codeSubmit,1,2,9,waveNumbers40
 2632,ex,codeSubmit,1,2,10,numbersOutput60
+2633,ex,codeSubmit,1,2,11,numbersOutputConstant
 2634,ex,codeSubmit,1,2,12,nestedNumbers
 2635,ex,codeSubmit,1,2,13,nestedNumbers2
 2636,ex,codeSubmit,1,2,14,nestedNumbers3
 2637,ex,codeSubmit,1,2,15,printDesign
 2638,ex,codeSubmit,1,2,16,SlashFigure
 2639,ex,codeSubmit,1,2,17,SlashFigure2
+2640,ex,codeSubmit,1,2,18,pseudocodeWindow
 2641,ex,codeSubmit,1,2,19,Window
 2642,ex,codeSubmit,1,2,20,StarFigure
 2643,ex,codeSubmit,1,2,21,StarFigure2
@@ -152,7 +154,7 @@
 2690,ex,codeSubmit,1,3,19,printReverse
 2691,ex,codeSubmit,1,3,20,inputBirthday
 2692,ex,codeSubmit,1,3,21,processName
-2693,ex,codeSubmit,1,3,22,TheNameGameExercise
+4182,ex,codeSubmit,1,3,22,TheNameGameExercise
 2694,sc,multipleChoice,5,3g,1,drawRectangleSyntax
 2695,sc,codeSubmit,1,3g,2,drawLineErrors
 2696,sc,codeSubmit,1,3g,3,fillRectErrors

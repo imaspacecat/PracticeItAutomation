@@ -1,0 +1,10 @@
+/*
+* Scales this time span by the given factor. For example, 1 hour and
+* 45 minutes scaled by 2 equals 3 hours and 30 minutes.
+*/
+
+
+    public void scale(int factor) {
+        this.hours = this.minutes * factor / 60 + factor * this.hours;
+        this.minutes = this.minutes * factor % 60;
+    }

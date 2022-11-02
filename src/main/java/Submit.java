@@ -24,11 +24,7 @@ public class Submit {
         Queue<String[]> problemInfo = submit.readProblemInfo(url);
 
         try(WebClient webClient = submit.login()){
-            //exercise exception
-            submit.exceptions(webClient);
-
             for(String[] problem : problemInfo){
-                if(Integer.parseInt(problem[0]) <= 2639) continue;
                 System.out.println(problem[4] + "." + problem[5]);
                 if(problem[2].equals("multipleSelect")){
                     submit.multipleSelectBruteForce(problem, webClient);

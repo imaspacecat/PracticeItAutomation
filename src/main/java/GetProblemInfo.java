@@ -24,10 +24,8 @@ public class GetProblemInfo {
             switch(problem[1]){
                 case "2835":
                     break;
-                case "2633":
-                    problem[7] = "NumbersOutput";
-                case "2640":
-                    Jsoup.connect("https://practiceit.cs.washington.edu/test/enqueue-job?problemid=2640&cheated=0&mechanical1=makeAWindow");
+                case "2693":
+                    out.write("4182,"+problem[2]+","+problem[3]+","+problem[4]+","+problem[5]+","+problem[6]+","+problem[7]+"\n");
                     break;
                 default:
                     out.write(problem[1]+","+problem[2]+","+problem[3]+","+problem[4]+","+problem[5]+","+problem[6]+","+problem[7]+"\n");

@@ -1,0 +1,10 @@
+public class TheNameGame{
+    public static void main(String[] args){
+        Scanner bruh = new Scanner(System.in);
+        System.out.print("What is your name? ");
+        String first = bruh.next();
+        String last = bruh.next();
+        System.out.printf("%s %s, bo-%s\nBanana-fana fo-%s\nFee-fi-mo-%s\n%s!\n\n", first, first, first.replaceFirst(String.valueOf(first.charAt(0)), "B"), first.replaceFirst(String.valueOf(first.charAt(0)), "F"), first.replaceFirst(String.valueOf(first.charAt(0)), "M"), first.toUpperCase());
+        System.out.printf("%s %s, bo-%s\nBanana-fana fo-%s\nFee-fi-mo-%s\n%s!", last, last, last.replaceFirst(String.valueOf(last.charAt(0)), "B"), last.replaceFirst(String.valueOf(last.charAt(0)), "F"), last.replaceFirst(String.valueOf(last.charAt(0)), "M"), last.toUpperCase());
+    }
+}
