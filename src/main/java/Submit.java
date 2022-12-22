@@ -46,8 +46,8 @@ public class Submit {
     public WebClient login() throws IOException{
         try (final WebClient webClient = new WebClient()) {
 
-            webClient.getOptions().setCssEnabled(true);
-            webClient.getOptions().setJavaScriptEnabled(true);
+            //webClient.getOptions().setCssEnabled(true);
+            //webClient.getOptions().setJavaScriptEnabled(true);
 
             final String email = "s172343@scusd.net";
             final String password = "Qy20041221";
