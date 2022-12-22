@@ -49,8 +49,8 @@ public class Submit {
             webClient.getOptions().setCssEnabled(true);
             webClient.getOptions().setJavaScriptEnabled(true);
 
-            final String email = "imaspacecatperson@gmail.com";
-            final String password = "thisisthepasswordbecareful";
+            final String email = "s172343@scusd.net";
+            final String password = "Qy20041221";
 
             final HtmlPage loginPage = webClient.getPage(
                     "https://practiceit.cs.washington.edu/login");
